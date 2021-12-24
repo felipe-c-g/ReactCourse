@@ -38,7 +38,6 @@ function App() {
   ];
 
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES)
-  const [expensesShowed, setExpensesShowed] = useState(expenses)
 
   const addExpenseHandler = expense =>{
     console.log('In App.js :: addExpenseHandler')
@@ -49,18 +48,11 @@ function App() {
     });
   }
 
-  const filterExpenseHandler = filteredExpenses =>{
-    console.log('In App.js :: filterExpenseHandler')
-    console.log(filteredExpenses);
-    setExpensesShowed(filteredExpenses);
-  }
 
   return (
     <div className="App">
       <NewExpenses onAddExpense={addExpenseHandler} expenses={expenses} />
       <Expenses 
-        onFilter={filterExpenseHandler} 
-        expensesShowed={expensesShowed}
         expenses={expenses} 
       />
     </div>
