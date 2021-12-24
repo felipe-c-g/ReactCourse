@@ -1,12 +1,12 @@
 // import logo from './logo.svg';
-// import './App.css';
-
+import React, {useState} from 'react';
+import './App.css';
 import Expenses from './components/Expenses/Expenses'
 import NewExpenses from './components/NewExpense/NewExpense'
 
 function App() {
 
-  const expenses = [
+  const DUMMY_EXPENSES = [
     {
       id: 'e1',
       title: 'Toilet Paper',
@@ -29,17 +29,40 @@ function App() {
       amount: 450,
       date: new Date(2021, 5, 12),
     },
+    {
+      id: 'e5',
+      title: 'New Chair (Wooden)',
+      amount: 150,
+      date: new Date(2021, 12, 22),
+    },
   ];
 
+  const [expenses, setExpenses] = useState(DUMMY_EXPENSES)
+  const [expensesShowed, setExpensesShowed] = useState(expenses)
+
   const addExpenseHandler = expense =>{
-    console.log('In App.js')
-    console.log(expense)
+    console.log('In App.js :: addExpenseHandler')
+
+    // The clean way to use previews values
+    setExpenses(prevExpenses => {
+      return [expense, ...prevExpenses];
+    });
+  }
+
+  const filterExpenseHandler = filteredExpenses =>{
+    console.log('In App.js :: filterExpenseHandler')
+    console.log(filteredExpenses);
+    setExpensesShowed(filteredExpenses);
   }
 
   return (
     <div className="App">
       <NewExpenses onAddExpense={addExpenseHandler} expenses={expenses} />
-      <Expenses expenses={expenses} />
+      <Expenses 
+        onFilter={filterExpenseHandler} 
+        expensesShowed={expensesShowed}
+        expenses={expenses} 
+      />
     </div>
   );
 }

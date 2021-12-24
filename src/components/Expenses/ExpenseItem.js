@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 import ExpenseDate from './ExpenseDate';
 import Card from '../UI/Card';
@@ -12,17 +12,8 @@ function ExpenseItem(props) {
     // All variables and constants used in this componet
     const id = props.item.id;
     const expenseDate = props.item.date;
-    const [title, setTitle]= useState(props.item.title);
-    const [expenseAmount, setAmount] = useState(props.item.amount);
-
-    // Functions
-    const clickHandler = () => {
-        console.log("Clicked!");
-        // This function will call the component again, updating the value
-        // Evaluating again
-        setTitle("Teste"); 
-        setAmount("100.00");
-    };
+    const title = props.item.title;
+    const expenseAmount = props.item.amount;
 
     return (
         <Card className="expense-item">
@@ -32,7 +23,6 @@ function ExpenseItem(props) {
                 <h2 className="expense-item__id">| ID: {id}</h2>
                 <div className="expense-item__price">${expenseAmount}</div>
             </div>
-            <button onClick= {clickHandler}>OK</button>
         </Card>
     );
 }
