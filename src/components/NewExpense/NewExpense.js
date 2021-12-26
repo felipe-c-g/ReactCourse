@@ -3,16 +3,15 @@ import "./NewExpense.css";
 import ExpenseForm from "./ExpenseForm";
 
 const NewExpense = (props) => {
-    const [addFormState, setAddFormState] = useState(false);
+    const [addFormState, setAddFormState] = useState(false);  
     
-    
-    const formButtonHandler = () => {
-        console.log("CHanged Form State")
+    const startFormHandler = () => {
+        console.log("Changed Form State",true)
         setAddFormState(true);
     }
 
-    const cancelButtonHandler = () => {
-        console.log("Changed Form State")
+    const cancelFormHandler = () => {
+        console.log("Changed Form State",false)
         setAddFormState(false);
     }
     
@@ -26,9 +25,13 @@ const NewExpense = (props) => {
 
     };
 
-    let newElementFormContent = <button onClick={formButtonHandler}>Add New</button>
+    let newElementFormContent = <button onClick={startFormHandler}>Add New</button>
     if (addFormState){
-        newElementFormContent = <ExpenseForm onCancel={cancelButtonHandler} onSaveExpenseData={saveExpenseDataHandler} /> 
+        newElementFormContent = 
+        <ExpenseForm 
+            onCancel={cancelFormHandler} 
+            onSaveExpenseData={saveExpenseDataHandler} 
+        /> 
     }
 
     return (
