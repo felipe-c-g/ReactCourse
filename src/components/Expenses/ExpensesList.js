@@ -3,8 +3,6 @@ import './ExpensesList.css';
 import ExpenseItem from "./ExpenseItem";
 
 
-
-
 const  ExpensesList = props => {
     // Can create a variable to control the content and 
     // do all logic decisions out of the return
